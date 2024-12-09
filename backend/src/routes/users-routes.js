@@ -1,8 +1,13 @@
 import express from 'express';
-import { getUsers } from '../controllers/users-controller.js';
+import { getUsers, getUsersWithAddress, createUser, deleteUser, updateUser } from '../controllers/users-controller.js';
+import { upload } from '../multer-config-user.js';
 
 const router = express.Router();
 
 router.get('/users', getUsers);
+router.get('/users-with-address', getUsersWithAddress);
+router.post('/users', upload.single("profile_picture"), createUser);
+router.delete('/users/:id', deleteUser);
+router.put('/users/:id', updateUser);
 
 export default router;
