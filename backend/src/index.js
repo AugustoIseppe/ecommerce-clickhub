@@ -16,6 +16,7 @@ app.use(cors()); // Habilita o CORS
 app.use("/", userRouter);
 app.use("/", productsRouter);
 app.use('/uploads/users', express.static('uploads'));
+app.use('/uploads/products', express.static('uploads'));
 // app.use('/uploads/products', express.static('uploads'));
 
 app.listen(PORT, () => {

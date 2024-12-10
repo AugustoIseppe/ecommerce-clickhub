@@ -8,6 +8,6 @@ router.get('/users', getUsers);
 router.get('/users-with-address', getUsersWithAddress);
 router.post('/users', upload.single("profile_picture"), createUser);
 router.delete('/users/:id', deleteUser);
-router.put('/users/:id', updateUser);
+router.put('/users/:user_id', updateUser);
 
 export default router;

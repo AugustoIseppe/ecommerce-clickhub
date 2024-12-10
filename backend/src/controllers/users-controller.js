@@ -105,18 +105,12 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { user_id } = req.params;
         const { name, email, password, phone, cpf } = req.body;
         const result = await sql`
-            UPDATE users 
-            SET 
-                name = ${name},
-                email = ${email},
-                password = ${password},
-                phone = ${phone},
-                cpf = ${cpf}
-            WHERE 
-                user_id = ${id}
+            UPDATE users
+            SET name = ${name}, email = ${email}, password = ${password}, phone = ${phone}, cpf = ${cpf}
+            WHERE user_id = ${user_id}
             RETURNING *;
         `;
         res.status(200).json(result[0]);
@@ -125,4 +119,3 @@ export const updateUser = async (req, res) => {
         res.status(500).json({ message: "Erro ao atualizar usuário" });
     }
 }
-
