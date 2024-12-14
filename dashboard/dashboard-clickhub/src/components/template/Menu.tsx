@@ -6,19 +6,33 @@ import {
   IconError404,
   IconHome2,
   IconLayout2,
+  IconList,
   IconListDetails,
+  IconUser,
+  IconUserBolt,
+  IconUserFilled,
   IconUserHexagon,
 } from "@tabler/icons-react";
 import MenuItem from "./MenuItem";
 
 export default function Menu() {
   return (
-    <aside className="w-80 bg-white p-6 border-r border-zinc-300">
+    <aside className="w-75 bg-white p-6 border-r border-zinc-300">
       <nav className="flex flex-col gap-2 text-slate-950">
         {/* texto = Nome | href = rota | icone = icone  */}
         <MenuItem texto="Início" href="/" icone={IconHome2} />
-        <MenuItem texto="Produtos" icone={IconBrandProducthunt} href="/products-clickhub" />
-        <MenuItem texto="Categorias" icone={IconCategory2} href="/categories-clickhub" />
+        <hr style={{ border: '1px solid #ccc', margin: '0px 0' }} />
+        <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Produtos</h2>
+        <MenuItem texto="Cadastrar Produto" icone={IconBrandProducthunt} href="/products-clickhub" />
+        <MenuItem texto="Produtos Cadastrados" icone={IconList} href="/product-list-clickhub" />
+        <hr style={{ border: '0.2px solid #ccc' }} />
+        <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Categorias</h2>
+        <MenuItem texto="Cadastrar Categoria" icone={IconCategory2} href="/categories-clickhub" />
+        <MenuItem texto="Categorias Disponíveis" icone={IconList} href="/categories-clickhub" />
+        <hr style={{ border: '0.2px solid #ccc' }} />
+        <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Usuários</h2>
+        <MenuItem texto="Cadastrar Usuário" icone={IconUser} href="/categories-clickhub" />
+        <MenuItem texto="Usuários Cadastrados" icone={IconList} href="/categories-clickhub" />
         {/* <MenuItem texto="Layout" href="/layout" icone={IconLayout2} />
         <MenuItem texto="Não Existe" href="/nao-existe" icone={IconError404} />
         <MenuItem

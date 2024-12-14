@@ -8,6 +8,7 @@ import favorites from "./routes/favorites-routes.js";
 import orders from "./routes/orders-routes.js";
 import multer from 'multer'; // Importação do multer: Middleware para upload de arquivos
 import { storage } from './multer-config-user.js'; // Importação da configuração do multer
+import path from 'path';
 
 const upload = multer({ storage: storage }); // Configuração do multer para salvar as imagens no diretório uploads
 const app = express();
@@ -24,7 +25,8 @@ app.use("/", address);
 app.use("/", favorites);
 app.use("/", orders);
 app.use('/uploads/users', express.static('uploads'));
-app.use('/uploads/products', express.static('uploads'));
+// app.use('/uploads/products', express.static('uploads'));
+app.use('/uploads/products', express.static(path.resolve('src/uploads/products')));
 // app.use('/uploads/products', express.static('uploads'));
 
 app.listen(PORT, () => {

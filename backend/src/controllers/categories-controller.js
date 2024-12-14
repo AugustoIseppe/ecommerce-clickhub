@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto';
 
 export const getCategories = async (req, res) => {
     try {
-        const categories = await sql`SELECT * FROM categories`;
+        const categories = await sql`SELECT * FROM categories order by name`;
         console.log('Categories fetched successfully:' + categories);
         res.status(200).json(categories);
     } catch (error) {

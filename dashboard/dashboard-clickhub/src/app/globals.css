@@ -34,32 +34,30 @@ body {
 
 /* src/app/globals.css */
 .form-container {
-  max-width: 500px;
+  max-width: 50%;
   margin: 0 auto;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
+  padding: 10px;
+  }
 
 form div {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   font-weight: bold;
 }
 
 input, textarea {
   width: 100%;
-  padding: 8px;
+  padding: 3px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 button {
+  width: 100%;
   padding: 10px 20px;
   background-color: #0070f3;
   color: white;
@@ -71,4 +69,74 @@ button {
 button:hover {
   background-color: #005bb5;
 }
+
+/* Estilo para o grupo do formulário */
+.form-group {
+  margin-bottom: .5rem;
+}
+
+.form-group label {
+  display: block;
+  /* margin-bottom: 1.5rem; */
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para o dropdown */
+.dropdown {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: .9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.dropdown:focus {
+  border-color: #007bff;
+}
+
+.dropdown option {
+  padding: 0.5rem;
+}
+
+.title-h1 {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.teste{
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+}
+
+.cabecalho-produto{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* styles.css */
+.elevation-1 {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.elevation-2 {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.elevation-3 {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 

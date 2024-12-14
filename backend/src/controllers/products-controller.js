@@ -3,9 +3,27 @@ import { randomUUID } from 'crypto';
 
 export const getProducts = async (req, res) => {
     try {
-        const products = await sql`SELECT * FROM products`;
+        const products = await sql`SELECT * FROM products order by name`;
         console.log('Products fetched successfully:' + products);
         res.status(200).json(products);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error });
+    }
+};
+
+export const getProductById = async (req, res) => {
+    try {
+        const { product_id } = req.params;
+        console.log("Request Params:", req.params);
+        const product = await sql`
+            SELECT * FROM products WHERE product_id = ${product_id}
+        `;
+        if (product.length === 0) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        console.log('Product fetched successfully:' + product);
+        res.status(200).json(product[0]);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error });
@@ -117,3 +135,70 @@ export const updateProduct = async (req, res) => {
         res.status(500).json({ message: error });
     }
 }
+
+export const getProductWithImages = async (req, res) => {
+    try {
+        const products = await sql`
+            SELECT 
+                p.product_id,
+                p.name,
+                p.description,
+                p.price,
+                p.stock,
+                pi.product_image_id,
+                pi.image_url,
+                pi.is_main,
+                pi.created_at AS image_created_at
+            FROM 
+                products p
+            LEFT JOIN 
+                product_images pi
+            ON 
+                p.product_id = pi.product_id
+            ORDER BY 
+                p.product_id, pi.is_main DESC;
+        `;
+
+        // Transformar os dados para agrupar as imagens em um array
+        const groupedProducts = products.reduce((acc, product) => {
+            const existingProduct = acc.find(p => p.product_id === product.product_id);
+
+            if (existingProduct) {
+                // Adicionar a imagem ao array de imagens do produto existente
+                if (product.product_image_id) {
+                    existingProduct.images.push({
+                        product_image_id: product.product_image_id,
+                        image_url: product.image_url,
+                        is_main: product.is_main,
+                        image_created_at: product.image_created_at,
+                    });
+                }
+            } else {
+                // Criar um novo produto com suas imagens
+                acc.push({
+                    product_id: product.product_id,
+                    name: product.name,
+                    description: product.description,
+                    price: product.price,
+                    stock: product.stock,
+                    images: product.product_image_id
+                        ? [{
+                            product_image_id: product.product_image_id,
+                            image_url: product.image_url,
+                            is_main: product.is_main,
+                            image_created_at: product.image_created_at,
+                        }]
+                        : [], // Caso não tenha imagens, array vazio
+                });
+            }
+
+            return acc;
+        }, []);
+
+        console.log('Products fetched successfully:', groupedProducts);
+        res.status(200).json(groupedProducts);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).json({ message: error.message });
+    }
+};

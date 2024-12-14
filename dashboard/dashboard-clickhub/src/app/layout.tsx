@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Abel } from "next/font/google";
+import { Roboto } from "next/font/google";
+import { Manrope } from "next/font/google";
+import { Lato } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,9 +11,42 @@ export const metadata: Metadata = {
   description: "Gerenciamento de Dados",
 };
 
-const font = Montserrat({
+// const font = Lato({
+//   subsets: ["latin"],
+//   weight: "400",
+//   style: "normal",
+// });
+
+const font = Poppins({
   subsets: ["latin"],
+  weight: "400",
+  style: "normal",
 });
+
+// const font = Manrope({
+//   subsets: ["latin"],
+//   weight: "300",
+//   style: "normal",
+
+// });
+
+// const font = Montserrat({
+//   subsets: ["latin"],
+// });
+
+// const font = Abel({
+//   subsets: ["latin"],
+//   weight: "400"
+// });
+
+// const font = Roboto({
+//   subsets: ["latin"],
+//   weight: "300",
+//   style: "normal",
+//   display: "swap"
+// });
+
+
 
 export default function RootLayout({
   children,
