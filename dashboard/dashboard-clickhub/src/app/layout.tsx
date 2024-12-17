@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 //   style: "normal",
 // });
 
-const font = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-  style: "normal",
-});
+// const font = Poppins({
+//   subsets: ["latin"],
+//   weight: "400",
+//   style: "normal",
+// });
 
 // const font = Manrope({
 //   subsets: ["latin"],
@@ -36,15 +36,16 @@ const font = Poppins({
 
 // const font = Abel({
 //   subsets: ["latin"],
-//   weight: "400"
+//   weight: "400",
+//   style: "normal",
 // });
 
-// const font = Roboto({
-//   subsets: ["latin"],
-//   weight: "300",
-//   style: "normal",
-//   display: "swap"
-// });
+const font = Roboto({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+  display: "swap"
+});
 
 
 

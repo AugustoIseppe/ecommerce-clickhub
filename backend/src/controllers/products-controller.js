@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import sql from '../db.js';
 import { randomUUID } from 'crypto';
 
@@ -145,6 +146,7 @@ export const getProductWithImages = async (req, res) => {
                 p.description,
                 p.price,
                 p.stock,
+                p.created_at,
                 pi.product_image_id,
                 pi.image_url,
                 pi.is_main,
@@ -181,6 +183,7 @@ export const getProductWithImages = async (req, res) => {
                     description: product.description,
                     price: product.price,
                     stock: product.stock,
+                    created_at: product.created_at,
                     images: product.product_image_id
                         ? [{
                             product_image_id: product.product_image_id,
@@ -202,3 +205,81 @@ export const getProductWithImages = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const getProductWithImagesById = async (req, res) => {
+    try {
+        const { product_id } = req.params;
+        console.log("Request Params:", req.params);
+
+        const products = await sql`
+            SELECT 
+                p.product_id,
+                p.name,
+                p.description,
+                p.price,
+                p.stock,
+                p.created_at,
+                pi.product_image_id,
+                pi.image_url,
+                pi.is_main,
+                pi.created_at AS image_created_at
+            FROM 
+                products p
+            LEFT JOIN 
+                product_images pi
+            ON 
+                p.product_id = pi.product_id
+            WHERE 
+                p.product_id = ${product_id}
+            ORDER BY 
+                pi.is_main DESC;
+        `;
+
+        // Transformar os dados para agrupar as imagens em um array
+        const groupedProducts = products.reduce((acc, product) => {
+            const existingProduct = acc.find(p => p.product_id === product.product_id);
+
+            if (existingProduct) {
+                // Adicionar a imagem ao array de imagens do produto existente
+                if (product.product_image_id) {
+                    existingProduct.images.push({
+                        product_image_id: product.product_image_id,
+                        image_url: product.image_url,
+                        is_main: product.is_main,
+                        image_created_at: product.image_created_at,
+                    });
+                }
+            } else {
+                // Criar um novo produto com suas imagens
+                acc.push({
+                    product_id: product.product_id,
+                    name: product.name,
+                    description: product.description,
+                    price: product.price,
+                    stock: product.stock,
+                    created_at: product.created_at,
+                    images: product.product_image_id
+                        ? [{
+                            product_image_id: product.product_image_id,
+                            image_url: product.image_url,
+                            is_main: product.is_main,
+                            image_created_at: product.image_created_at,
+                        }]
+                        : [], // Caso não tenha imagens, array vazio
+                });
+            }
+
+            return acc;
+        }, []);
+
+        if (groupedProducts.length === 0) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        console.log('Product fetched successfully:', groupedProducts[0]);
+        res.status(200).json(groupedProducts[0]);
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        res.status(500).json({ message: error.message });
+    }
+}

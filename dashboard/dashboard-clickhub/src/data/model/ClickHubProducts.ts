@@ -7,5 +7,6 @@ export default interface ClickHubProducts {
     price: number;
     stock: number;
     images: ClickHubProductImage[];
+    created_at: string;
 }
 

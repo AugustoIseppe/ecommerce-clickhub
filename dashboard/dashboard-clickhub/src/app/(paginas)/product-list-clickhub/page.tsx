@@ -8,23 +8,28 @@ export default async function ProductListClickHub() {
     console.log(`LISTA DE PRODUTOS: ${JSON.stringify(products, null, 2)}`);
 
     return (
-        <>
-            <div className="flex flex-row justify-between gap-2 p-1 text-sm font-bold">
-
-                <h2 className="text-2xl font-black align-baseline">Produtos</h2>
-                <h2 className="text-2xl font-black align-baseline">Ações</h2>
-
-            </div>
-            <div className="flex flex-col">
-                <div className="flex flex-col gap-0.5">
+        <div className="overflow-x-auto h-screen bg-white text-black border-none">
+            <table className="table table-xs w-full h-full bg-white text-black border-none">
+                <thead>
+                    <tr>
+                        <th className="text-center text-black">#</th>
+                        <th className="text-left text-black">Nome</th>
+                        <th className="text-center text-black">Preço</th>
+                        <th className="text-center text-black">Estoque</th>
+                        <th className="text-center text-black">Criado em</th>
+                        <th className="text-center text-black">Detalhes</th>
+                    </tr >
+                </thead >
+                <tbody>
                     {products.map((product: ClickHubProducts, index: number) => (
-                        <ProductItemClickHub key={product.product_id} product={product} index={index} />
+                        <ProductItemClickHub
+                            key={product.product_id}
+                            product={product}
+                            index={index}
+                        />
                     ))}
-                </div>
-            </div>
-        </>
-
+                </tbody>
+            </table >
+        </div >
     );
 }
-
-
