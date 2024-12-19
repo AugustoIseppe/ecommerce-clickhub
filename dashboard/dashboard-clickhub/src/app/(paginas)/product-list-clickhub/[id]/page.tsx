@@ -51,43 +51,37 @@ export default function PaginaProdutoClickHubPorId({ params }: { params: Promise
             <p className="text-sm text-gray-700 text-center">{produto.description}</p>
 
             {/* Detalhes do Produto */}
-            <div className="flex justify-around items-center p-2 rounded-md">
+            <div className="flex justify-around items-center p-2 rounded-md gap-4">
                 <p><strong>Preço:</strong> R$ {produto.price}</p>
                 <p><strong>Estoque:</strong> {produto.stock} unidades</p>
             </div>
 
-            {/* Galeria de Imagens */}
-            <div className="flex flex-wrap gap-4 justify-center">
-                {produto.images.map((image: any) => (
-                    <div
-                        key={image.product_image_id}
-                        className={`relative w-36 h-26 rounded overflow-hidden ${image.is_main ? 'border-blue-500' : 'border-gray-300'}`}
+            <div className="flex flex-col gap-4 justify-center items-center">
+                <div className="relative w-36 h-26 rounded overflow-hidden border-gray-300">
+                    <img
+                        src={`http://localhost:3000/uploads/products/${produto.image1}`}
+                        className="object-cover w-full h-full"
+                    />
+                </div>
+
+                <div className="flex flex-col gap-2 w-1/2 items-center">
+                    <button className="btn btn-outline btn-success text-black gap-1 w-60">Alterar Produto</button>
+                    <button
+                        className="btn btn-outline btn-error w-60"
+                        onClick={handleExcluirProduto} // Função chamada ao clicar no botão
                     >
-                        <img
-                            src={`http://localhost:3000/uploads/products/${image.image_url}`}
-                            className="object-cover w-full h-full"
-                        />
-                        {image.is_main && (
-                            <span className="absolute top-2 left-2 bg-yellow-500 text-white px-2 py-1 text-xs rounded">
-                                Destaque
-                            </span>
-                        )}
-                    </div>
-                ))}
+                        Excluir Produto
+                    </button>
+                    <Link href="/product-list-clickhub" className="mt-2 w-60">
+                        <button className="btn btn-primary text-white">Voltar</button>
+                    </Link>
+                </div>
+
+
+
+
             </div>
-
-            {/* Botões */}
-            <button className="btn btn-outline btn-success w-1/2 text-black">Alterar Produto</button>
-            <button
-                className="btn btn-outline btn-error w-1/2"
-                onClick={handleExcluirProduto} // Função chamada ao clicar no botão
-            >
-                Excluir Produto
-            </button>
-
-            <Link href="/product-list-clickhub" className="w-1/2">
-                <button className="btn btn-primary text-white">Voltar</button>
-            </Link>
         </div>
     );
 }
+

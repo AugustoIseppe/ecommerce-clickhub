@@ -1,4 +1,3 @@
-import ClickHubProductImage from "./ClickHubProductImage";
 
 export default interface ClickHubProducts {
     product_id: string;
@@ -6,7 +5,11 @@ export default interface ClickHubProducts {
     description: string;
     price: number;
     stock: number;
-    images: ClickHubProductImage[];
+    category_id: string;
     created_at: string;
+    updated_at: string;
+    image1: string;
+    image2: string;
+    image3: string;
 }
 

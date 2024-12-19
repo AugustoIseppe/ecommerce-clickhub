@@ -12,6 +12,19 @@ export const getCategories = async (req, res) => {
     }
 }
 
+export const getCategoryById = async (req, res) => {
+    const { category_id } = req.params;
+
+    try {
+        const category = await sql`SELECT * FROM categories WHERE category_id = ${category_id}`;
+        console.log('Category fetched successfully:' + category);
+        res.status(200).json(category[0]);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error });
+    }
+}
+
 export const createCategory = async (req, res) => {
     const { name } = req.body;
     const category_id = randomUUID();

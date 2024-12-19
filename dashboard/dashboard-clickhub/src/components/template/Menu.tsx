@@ -28,11 +28,11 @@ export default function Menu() {
         <hr style={{ border: '0.2px solid #ccc' }} />
         <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Categorias</h2>
         <MenuItem texto="Cadastrar Categoria" icone={IconCategory2} href="/categories-clickhub" />
-        <MenuItem texto="Categorias Disponíveis" icone={IconList} href="/categories-clickhub" />
-        <hr style={{ border: '0.2px solid #ccc' }} />
+        <MenuItem texto="Categorias Disponíveis" icone={IconList} href="/categories-list-clickhub" />
+        {/* <hr style={{ border: '0.2px solid #ccc' }} />
         <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Usuários</h2>
         <MenuItem texto="Cadastrar Usuário" icone={IconUser} href="/categories-clickhub" />
-        <MenuItem texto="Usuários Cadastrados" icone={IconList} href="/categories-clickhub" />
+        <MenuItem texto="Usuários Cadastrados" icone={IconList} href="/categories-clickhub" /> */}
         {/* <MenuItem texto="Layout" href="/layout" icone={IconLayout2} />
         <MenuItem texto="Não Existe" href="/nao-existe" icone={IconError404} />
         <MenuItem

@@ -25,9 +25,7 @@ app.use("/", address);
 app.use("/", favorites);
 app.use("/", orders);
 app.use('/uploads/users', express.static('uploads'));
-// app.use('/uploads/products', express.static('uploads'));
 app.use('/uploads/products', express.static(path.resolve('src/uploads/products')));
-// app.use('/uploads/products', express.static('uploads'));
 
 app.listen(PORT, () => {
     console.log(`O servidor está rodando na porta: ${PORT}`);

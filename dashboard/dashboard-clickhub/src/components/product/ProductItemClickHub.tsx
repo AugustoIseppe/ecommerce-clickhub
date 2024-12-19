@@ -24,10 +24,10 @@ export default function ProductItemClickHub(props: ProductItemClickHubProps) {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
 
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
+    // const hours = String(date.getHours()).padStart(2, "0");
+    // const minutes = String(date.getMinutes()).padStart(2, "0");
 
-    return `${day}/${month}/${year} - ${hours}:${minutes}`;
+    return `${day}/${month}/${year}`;
   }
 
 
@@ -38,7 +38,7 @@ export default function ProductItemClickHub(props: ProductItemClickHubProps) {
     <>
       <tr className={`text-sm ${isEven ? "bg-white" : "bg-slate-100"} border-none text-black `}>
         <th className="text-center">{i}</th>
-        <td>{product.name}</td>
+        <td className="text-black">{product.name}</td>
         <td className="text-center">R$ {product.price}</td>
         <td className="text-center">{product.stock}</td>
         <td className="text-center">{formatDateToBrazilian(product.created_at)}</td>
@@ -52,30 +52,5 @@ export default function ProductItemClickHub(props: ProductItemClickHubProps) {
   );
 }
 
-// <Link href={`/product-list-clickhub/${product.product_id}`}>
-//   <div
-//     className={`elevation-1 gap-2 flex p-1 flex-row justify-between w-full rounded-lg ${isEven ? "bg-gray-200" : "bg-slate-100"
-//       }`}
-//   >
-//     <div className="gap-2 flex flex-row items-center justify-start w-full">
-//       {/* Exibe a imagem principal ou a imagem padrão diretamente no src */}
-//       <img
-//         src={
-//           product.images.length > 0
-//             ? `http://localhost:3000/uploads/products/${product.images.find((img) => img.is_main)?.image_url ||
-//             product.images[0].image_url
-//             }`
-//             : defaultImage.src // Acessa a propriedade 'src' para obter a URL
-//         }
-//         alt={product.name || "Imagem padrão"}
-//         className="w-8 h-8 rounded-md object-cover"
-//       />
 
-//       <div className="text-xs">{product.name}</div>
-//     </div>
-//     <div className="gap-4 flex flex-row justify-between items-center mr-4">
-//       <ArrowRightCircleIcon width={18} className="text-blue-500 cursor-pointer" />
-//     </div>
-//   </div>
-// </Link>
 

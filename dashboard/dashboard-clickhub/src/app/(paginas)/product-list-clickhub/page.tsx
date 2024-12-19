@@ -20,8 +20,17 @@ export default async function ProductListClickHub() {
                         <th className="text-center text-black">Detalhes</th>
                     </tr >
                 </thead >
-                <tbody>
+                {products.length === 0 && (
+                    <tbody>
+                        <tr>
+                            <td colSpan={6} className="text-center">Nenhum produto cadastrado</td>
+                        </tr>
+                    </tbody>
+                )
+                }
+                <tbody >
                     {products.map((product: ClickHubProducts, index: number) => (
+
                         <ProductItemClickHub
                             key={product.product_id}
                             product={product}

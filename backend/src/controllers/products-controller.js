@@ -1,4 +1,4 @@
-import { create } from 'domain';
+// import { create } from 'domain';
 import sql from '../db.js';
 import { randomUUID } from 'crypto';
 
@@ -31,6 +31,41 @@ export const getProductById = async (req, res) => {
     }
 };
 
+
+// export const createProduct = async (req, res) => {
+//     const uuid = randomUUID(); // Gera um ID único para o produto
+//     console.log("Generated UUID:", uuid);
+
+//     // Verifica se as imagens foram enviadas
+//     if (!req.files || req.files.length === 0) {
+//         return res.status(400).json({ message: "Nenhuma imagem foi enviada." });
+//     }
+
+//     try {
+//         const { name, description, price, stock, category_id } = req.body;
+//         console.log("Request Body:", req.body);
+
+//         // Construindo as URLs das imagens
+//         const imagePaths = req.files.map(file => file.filename); // Apenas o nome do arquivo
+//         console.log("Imagens salvas:", imagePaths);
+
+//         // Insere o produto com as imagens
+//         const product = await sql`
+//             INSERT INTO products
+//                 (product_id, name, description, price, stock, category_id, image1, image2, image3)
+//             VALUES
+//                 (${uuid}, ${name}, ${description}, ${price}, ${stock}, ${category_id}, ${imagePaths[0] || null}, ${imagePaths[1] || null}, ${imagePaths[2] || null}) 
+//             RETURNING *
+//         `;
+//         console.log('Produto criado com sucesso:', product);
+//         res.status(200).json(product[0]);
+//     } catch (error) {
+//         console.log("Erro ao criar o produto:", error);
+//         res.status(500).json({ message: "Erro ao criar o produto." });
+//     }
+// };
+
+
 export const createProduct = async (req, res) => {
     const uuid = randomUUID(); // Generates a unique id for the user
     console.log("Generated UUID:", uuid);
@@ -39,9 +74,9 @@ export const createProduct = async (req, res) => {
         console.log("Request Body:", req.body);
         const product = await sql`
             INSERT INTO products
-                (product_id, name, description, price, stock, category_id)
+                (product_id, name, description, price, stock, category_id, image1)
             VALUES
-                (${uuid}, ${name}, ${description}, ${price}, ${stock}, ${category_id}) 
+                (${uuid}, ${name}, ${description}, ${price}, ${stock}, ${category_id}, ${req.file ? req.file.filename : null}) 
             RETURNING *
         `;
         console.log('Product created successfully:' + product);

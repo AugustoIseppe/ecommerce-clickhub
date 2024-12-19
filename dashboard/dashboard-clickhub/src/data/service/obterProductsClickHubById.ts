@@ -1,7 +1,7 @@
 'use server'
 
 export default async function obterProductsClickHubById(id: string) {
-    const response = await fetch(`http://localhost:3000/products-images/${id}`);
+    const response = await fetch(`http://localhost:3000/products/${id}`);
 
     // Verifica se a resposta foi bem-sucedida
     if (!response.ok) {

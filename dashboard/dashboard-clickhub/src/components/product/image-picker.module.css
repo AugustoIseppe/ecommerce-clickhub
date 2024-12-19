@@ -1,0 +1,81 @@
+.controls {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .picker .input {
+    display: none;
+  }
+  
+  /* .picker .button {
+    border: 0;
+    padding: 0.2rem 1rem;
+    background: gainsboro;
+    cursor: pointer;
+    font: inherit;
+    color: black;
+  }
+  
+  .picker .button:hover,
+  .picker .button:focus {
+  } */
+  
+  .preview {
+    width: 12rem;
+    height: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    border-radius: 0.5rem;
+    background-color: gainsboro;
+
+  }
+  
+  .preview p {
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .preview img {
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #007bff; /* Azul profissional */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button:active {
+    background-color: #003f7f; /* Azul ainda mais escuro no clique */
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+    background-image: url('/path-to-your-icon.svg'); /* Substitua pelo caminho do ícone */
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+  }
+  

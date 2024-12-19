@@ -1,7 +1,7 @@
 "use client";
 
+import ImagePicker from "@/components/product/image-picker";
 import { useState, useEffect } from "react";
-
 export default function ProductForm() {
     const [formData, setFormData] = useState({
         name: "",
@@ -9,6 +9,7 @@ export default function ProductForm() {
         price: "",
         stock: "",
         category_id: "",
+        image1: "",
     });
 
     const [categories, setCategories] = useState<{ category_id: string; name: string }[]>([]);
@@ -37,19 +38,23 @@ export default function ProductForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        const formDataToSend = new FormData();
+        formDataToSend.append("name", formData.name);
+        formDataToSend.append("description", formData.description);
+        formDataToSend.append("price", formData.price);
+        formDataToSend.append("stock", formData.stock);
+        formDataToSend.append("category_id", formData.category_id);
+
+        // Adicionar a imagem selecionada (convertida para arquivo) no FormData
+        const fileInput = document.getElementById("image1") as HTMLInputElement;
+        if (fileInput && fileInput.files?.[0]) {
+            formDataToSend.append("image1", fileInput.files[0]);
+        }
+
         try {
             const response = await fetch("http://localhost:3000/products", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    description: formData.description,
-                    price: parseFloat(formData.price),
-                    stock: parseInt(formData.stock, 10),
-                    category_id: formData.category_id,
-                }),
+                body: formDataToSend,
             });
 
             if (response.ok) {
@@ -60,7 +65,9 @@ export default function ProductForm() {
                     price: "",
                     stock: "",
                     category_id: "",
+                    image1: "",
                 });
+
             } else {
                 const errorData = await response.json();
                 console.error("Erro ao cadastrar produto:", errorData.message);
@@ -71,6 +78,7 @@ export default function ProductForm() {
             alert("Erro ao enviar o formulário.");
         }
     };
+
 
     return (
 
@@ -141,10 +149,16 @@ export default function ProductForm() {
                         ))}
                     </select>
                 </div>
-
+                <ImagePicker label="Foto do Produto" name="image1" />
                 <button type="submit">Cadastrar</button>
+                {/* <button className="btn" type="submit">open modal</button> */}
+
             </form>
-            {successMessage && <p>{successMessage}</p>}
+            {successMessage &&
+                <div className="success-message">
+                    {successMessage}
+                </div>
+            }
         </div>
 
 

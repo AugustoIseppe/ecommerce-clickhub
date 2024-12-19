@@ -4,6 +4,7 @@ import { Roboto } from "next/font/google";
 import { Manrope } from "next/font/google";
 import { Lato } from "next/font/google";
 import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,18 +35,18 @@ export const metadata: Metadata = {
 //   subsets: ["latin"],
 // });
 
-// const font = Abel({
-//   subsets: ["latin"],
-//   weight: "400",
-//   style: "normal",
-// });
-
-const font = Roboto({
+const font = Abel({
   subsets: ["latin"],
   weight: "400",
   style: "normal",
-  display: "swap"
 });
+
+// const font = Roboto({
+//   subsets: ["latin"],
+//   weight: "400",
+//   style: "normal",
+//   display: "swap"
+// });
 
 
 
