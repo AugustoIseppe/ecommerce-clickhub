@@ -61,21 +61,31 @@ input, textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
-
 }
 
 button {
+  width: 100%;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+
+}
+.button-form {
   width: 100%;
   padding: 10px 20px;
   background-color: #0070f3;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  /* margin-top: -10px; */
 }
-
-button:hover {
-  background-color: #005bb5;
+.button-form:hover {
+  background-color: #1363BEFF;
+  padding: 11px 21px;
 }
 
 /* Estilo para o grupo do formulário */

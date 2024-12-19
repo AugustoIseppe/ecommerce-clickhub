@@ -62,7 +62,7 @@ export default function PaginaCategoriaClickHubPorId({ params }: { params: Promi
                         Excluir Categoria
                     </button>
                     <Link href="/categories-list-clickhub" className="mt-2 w-60">
-                        <button className="btn btn-primary text-white">Voltar</button>
+                        <button className="button-form">Voltar</button>
                     </Link>
                 </div>
 

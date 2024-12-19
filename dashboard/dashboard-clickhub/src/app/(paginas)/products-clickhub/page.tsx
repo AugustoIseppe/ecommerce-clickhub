@@ -150,7 +150,7 @@ export default function ProductForm() {
                     </select>
                 </div>
                 <ImagePicker label="Foto do Produto" name="image1" />
-                <button type="submit">Cadastrar</button>
+                <button type="submit" className="button-form">Cadastrar</button>
                 {/* <button className="btn" type="submit">open modal</button> */}
 
             </form>

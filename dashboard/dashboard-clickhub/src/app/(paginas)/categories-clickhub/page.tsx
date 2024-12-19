@@ -70,7 +70,7 @@ export default function ProductForm() {
 
 
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit" className="button-form">Cadastrar</button>
                 {/* <button className="btn" type="submit">open modal</button> */}
 
             </form>
