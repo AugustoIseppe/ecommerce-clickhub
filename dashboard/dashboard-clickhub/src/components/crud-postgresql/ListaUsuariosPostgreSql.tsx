@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export interface ListaUsuariosPostgreSqlProps {
     usuarios: ClickHubUsers[];
+    removerUsuario: (usuario: ClickHubUsers) => void;
 }
 
 export default function ListaUsuariosPostgreSql(props: ListaUsuariosPostgreSqlProps) {
@@ -32,13 +33,6 @@ export default function ListaUsuariosPostgreSql(props: ListaUsuariosPostgreSqlPr
                                 className="object-cover w-10 h-10 rounded-full"
                             />
                         )}
-                        {/* <Image
-                            alt="Imagem do usuário"
-                            src={`http://localhost:3000/uploads/users/${usuario.profile_picture}`}
-                            width={50}
-                            height={50}
-                            className="object-cover w-10 h-10 rounded-full"
-                        /> */}
                         <div className="flex flex-col ml-2">
 
                             <span>{usuario.name}</span>
@@ -49,7 +43,7 @@ export default function ListaUsuariosPostgreSql(props: ListaUsuariosPostgreSqlPr
                 <div className="flex gap-2 ml-auto">
 
                     <button className=" bg-blue-600 py-1 px-3"><IconEdit color="white" size={16} /></button>
-                    <button className=" bg-red-500  py-1 px-3"><IconTrash color="white" size={16} /></button>
+                    <button className=" bg-red-500  py-1 px-3"><IconTrash color="white" size={16} onClick={() => props.removerUsuario(usuario)} /></button>
                 </div>
             </div>
         )
