@@ -24,7 +24,7 @@ app.use("/", categoriesRouter);
 app.use("/", address);
 app.use("/", favorites);
 app.use("/", orders);
-app.use('/uploads/users', express.static('uploads'));
+app.use('/uploads/users', express.static(path.resolve('src/uploads/users')));
 app.use('/uploads/products', express.static(path.resolve('src/uploads/products')));
 
 app.listen(PORT, () => {

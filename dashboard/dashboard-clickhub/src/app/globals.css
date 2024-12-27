@@ -33,6 +33,10 @@ body {
   }
 }
 
+h3{
+  color: black;
+  font-weight: bold;
+}
 /* src/app/globals.css */
 .form-container {
   max-width: 50%;

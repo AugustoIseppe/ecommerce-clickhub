@@ -4,6 +4,7 @@ import {
   IconCategory,
   IconCategory2,
   IconError404,
+  IconForms,
   IconHome2,
   IconLayout2,
   IconList,
@@ -29,6 +30,10 @@ export default function Menu() {
         <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Categorias</h2>
         <MenuItem texto="Cadastrar Categoria" icone={IconCategory2} href="/categories-clickhub" />
         <MenuItem texto="Categorias Disponíveis" icone={IconList} href="/categories-list-clickhub" />
+        <hr style={{ border: '0.2px solid #ccc' }} />
+        <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>CRUD - Léo Leitão</h2>
+        <MenuItem texto="Listar Itens - Mock" icone={IconForms} href="/crud" />
+        <MenuItem texto="Listar Itens - Postgresql" icone={IconForms} href="/crud-postgresql" />
         {/* <hr style={{ border: '0.2px solid #ccc' }} />
         <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Usuários</h2>
         <MenuItem texto="Cadastrar Usuário" icone={IconUser} href="/categories-clickhub" />
