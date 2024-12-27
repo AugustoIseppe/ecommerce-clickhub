@@ -7,11 +7,19 @@ import ListaUsuarios from "./ListaUsuarios";
 export default function CadastroUsuario() {
 
     //O useState precisa do useClient
-    const [usuario, setUsuario] = useState<Usuario[]>(todosOsUsuarios);
+    const [usuarios, setUsuario] = useState<Usuario[]>(todosOsUsuarios);
+
+    function removerUsuario(usuario: Usuario) {
+        const todosMenosUsuarioInformado = usuarios.filter((u) => u.id !== usuario.id);
+        setUsuario(todosMenosUsuarioInformado);
+    }
 
     return (
         <div>
-            <ListaUsuarios usuarios={usuario} />
+            <ListaUsuarios
+                usuarios={usuarios}
+                removerUsuario={removerUsuario}
+            />
         </div>
     )
 }
