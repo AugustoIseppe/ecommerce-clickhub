@@ -10,7 +10,7 @@ export default function FormUsuario(props: FormUsuarioProps) {
         <div>
             <div className="flex flex-col">
                 <span>Nome</span>
-                <input type="text" className="input-form" value={props.usuario.nome} />
+                <input type="text" className="input-form " value={props.usuario.nome} />
             </div>
             <div className="flex flex-col">
                 <span>Email</span>
