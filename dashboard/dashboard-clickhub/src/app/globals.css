@@ -189,3 +189,29 @@ h1 {
   items-align: center;
   border-radius: 1.7rem;
 }
+
+.input-form {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: .9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: black;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.botaozinho {
+    margin: 0 auto;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+
+}

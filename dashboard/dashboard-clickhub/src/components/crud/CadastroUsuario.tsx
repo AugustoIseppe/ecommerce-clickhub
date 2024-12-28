@@ -3,6 +3,7 @@ import { useState } from "react";
 import todosOsUsuarios from "@/data/constants/usuarios";
 import Usuario from "@/data/model/Usuario";
 import ListaUsuarios from "./ListaUsuarios";
+import FormUsuario from "./FormUsuario";
 
 export default function CadastroUsuario() {
 
@@ -16,10 +17,11 @@ export default function CadastroUsuario() {
 
     return (
         <div>
-            <ListaUsuarios
+            {/* <ListaUsuarios
                 usuarios={usuarios}
                 removerUsuario={removerUsuario}
-            />
+            /> */}
+            <FormUsuario usuario={usuarios[0]} />
         </div>
     )
 }
