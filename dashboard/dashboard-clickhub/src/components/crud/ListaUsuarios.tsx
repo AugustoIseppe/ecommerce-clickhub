@@ -4,6 +4,7 @@ import { IconEdit, IconTrash } from "@tabler/icons-react";
 
 export interface ListaUsuariosProps {
     usuarios: Usuario[];
+    selecionarUsuario: (usuario: Usuario) => void;
     removerUsuario: (usuario: Usuario) => void;
 }
 
@@ -18,7 +19,7 @@ export default function ListaUsuarios(props: ListaUsuariosProps) {
                 </div>
                 <div className="flex gap-2 ml-auto">
 
-                    <button className=" bg-blue-600 py-1 px-3"><IconEdit color="white" size={16} /></button>
+                    <button className=" bg-blue-600 py-1 px-3"><IconEdit color="white" size={16} onClick={() => props.selecionarUsuario(usuario)} /></button>
                     <button className=" bg-red-500  py-1 px-3"><IconTrash color="white" size={16} onClick={() => props.removerUsuario(usuario)} /></button>
                 </div>
             </div>

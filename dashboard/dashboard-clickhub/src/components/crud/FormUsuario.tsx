@@ -2,6 +2,7 @@ import Usuario from "@/data/model/Usuario";
 
 export interface FormUsuarioProps {
     usuario: Partial<Usuario>;
+    cancelar: () => void;
 }
 
 export default function FormUsuario(props: FormUsuarioProps) {
@@ -21,7 +22,7 @@ export default function FormUsuario(props: FormUsuarioProps) {
             </div>
             <div className="flex flex-row gap-1">
                 <button className="botaozinho">Salvar</button>
-                <button className="botaozinho">Cancelar</button>
+                <button className="botaozinho" onClick={props.cancelar}>Cancelar</button>
             </div>
         </div>
     );
