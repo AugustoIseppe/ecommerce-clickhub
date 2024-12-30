@@ -18,7 +18,7 @@ export default function ListaUsuariosPostgreSql(props: ListaUsuariosPostgreSqlPr
 
                     <div className="flex flex-row gap-1 justity-center items-center">
                         {/* Inserir uma imagem do usuario - se nao tiver uma imagem, usar uma padrao blank-avatar.png */}
-                        {usuario.profile_picture === "" ? (
+                        {usuario.profile_picture === null || usuario.profile_picture === "" || usuario.profile_picture === undefined ? (
                             <Image
                                 alt="Imagem do usuário"
                                 src="/blank-avatar.png"

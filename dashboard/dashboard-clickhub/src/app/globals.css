@@ -218,15 +218,3 @@ h1 {
     margin-top: 10px;
 }
 
-.button-new-user{
-  width: 15%;
-  padding: 10px 20px;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}

@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import Usuario from "../../data/model/ClickHubUsers";
 
 export interface FormUsuarioProps {
@@ -9,6 +11,43 @@ export interface FormUsuarioProps {
 
 export default function FormUsuario(props: FormUsuarioProps) {
     const { usuario, alterarUsuario, salvar, cancelar } = props;
+    const [successMessage, setSuccessMessage] = useState("");
+
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const formDataToSend = new FormData();
+        formDataToSend.append("name", props.usuario.name ?? "");
+        formDataToSend.append("email", props.usuario.email ?? "");
+        formDataToSend.append("password", props.usuario.password ?? "");
+        formDataToSend.append("phone", props.usuario.phone ?? "");
+        formDataToSend.append("cpf", props.usuario.cpf ?? "");
+
+        try {
+            const response = await fetch("http://localhost:3000/users", {
+                method: "POST",
+                body: formDataToSend,
+            });
+
+            if (response.ok) {
+                setSuccessMessage("Usuário cadastrado com sucesso!");
+                console.log("Usuário cadastrado com sucesso!");
+                {/* Exibir um dialog */ }
+                salvar();
+
+            } else {
+                setSuccessMessage("Erro ao cadastrar usuário.");
+            }
+        } catch (error) {
+            console.error("Erro ao cadastrar usuário:", error);
+        }
+        {/* Limpar campos ou redirecionar para a pagina de lista de usuarios */ }
+
+
+    };
+
+
     return (
         <div>
             <div className="flex flex-col">
@@ -56,7 +95,8 @@ export default function FormUsuario(props: FormUsuarioProps) {
                 />
             </div>
             <div className="flex flex-row gap-1">
-                <button className="botaozinho" onClick={salvar}>Salvar</button>
+                {/* <button className="botaozinho" onClick={salvar}>Salvar</button> */}
+                <button className="botaozinho" onClick={handleSubmit}>Salvar</button>
                 <button className="botaozinho" onClick={cancelar}>Cancelar</button>
             </div>
         </div>

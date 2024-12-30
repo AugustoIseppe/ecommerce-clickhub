@@ -31,33 +31,13 @@ export default function Menu() {
         <MenuItem texto="Cadastrar Categoria" icone={IconCategory2} href="/categories-clickhub" />
         <MenuItem texto="Categorias Disponíveis" icone={IconList} href="/categories-list-clickhub" />
         <hr style={{ border: '0.2px solid #ccc' }} />
+        <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Clientes</h2>
+        <MenuItem texto="Usuários Cadastrados" icone={IconUser} href="/crud-postgresql" />
+        <hr style={{ border: '0.2px solid #ccc' }} />
         <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>CRUD - Léo Leitão</h2>
-        <MenuItem texto="Listar Itens - Mock" icone={IconForms} href="/crud" />
-        <MenuItem texto="Listar Itens - Postgresql" icone={IconForms} href="/crud-postgresql" />
-        {/* <hr style={{ border: '0.2px solid #ccc' }} />
-        <h2 style={{ textAlign: 'start', fontWeight: 'bold' }}>Usuários</h2>
-        <MenuItem texto="Cadastrar Usuário" icone={IconUser} href="/categories-clickhub" />
-        <MenuItem texto="Usuários Cadastrados" icone={IconList} href="/categories-clickhub" /> */}
-        {/* <MenuItem texto="Layout" href="/layout" icone={IconLayout2} />
-        <MenuItem texto="Não Existe" href="/nao-existe" icone={IconError404} />
-        <MenuItem
-          texto="Fetch Api - JsonPlaceholder"
-          href="/posts"
-          icone={IconArrowsDiff}
-        />
-        <MenuItem
-          texto="Fetch Api - DummyJson"
-          href="/products"
-          icone={IconArrowsDiff}
-        />
-        <MenuItem texto="Produtos" href="/produtos" icone={IconListDetails} />
-        <MenuItem texto="Usuarios" href="/usuarios" icone={IconUserHexagon} />
-        <MenuItem
-          texto="Cliente vs Servidor"
-          href="/cliente-servidor"
-          icone={IconArrowsDiff}
-        />
-        <MenuItem texto="Administração" href="/admin" icone={IconUserHexagon} /> */}
+        <MenuItem texto="CRUD - Mock" icone={IconForms} href="/crud" />
+        <MenuItem texto="CRUD - Postgresql" icone={IconForms} href="/crud-postgresql" />
+
       </nav>
     </aside>
   );
