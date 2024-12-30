@@ -1,9 +1,11 @@
+"use client";
 import ClickHubUsers from "@/data/model/ClickHubUsers";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 import Image from "next/image";
 
 export interface ListaUsuariosPostgreSqlProps {
     usuarios: ClickHubUsers[];
+    selecionarUsuario: (usuario: ClickHubUsers) => void;
     removerUsuario: (usuario: ClickHubUsers) => void;
 }
 
@@ -42,7 +44,7 @@ export default function ListaUsuariosPostgreSql(props: ListaUsuariosPostgreSqlPr
                 </div>
                 <div className="flex gap-2 ml-auto">
 
-                    <button className=" bg-blue-600 py-1 px-3"><IconEdit color="white" size={16} /></button>
+                    <button className=" bg-blue-600 py-1 px-3"><IconEdit color="white" size={16} onClick={() => props.selecionarUsuario(usuario)} /></button>
                     <button className=" bg-red-500  py-1 px-3"><IconTrash color="white" size={16} onClick={() => props.removerUsuario(usuario)} /></button>
                 </div>
             </div>
