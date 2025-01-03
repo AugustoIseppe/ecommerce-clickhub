@@ -6,6 +6,7 @@ import categoriesRouter from "./routes/categories-routes.js";
 import address from "./routes/address-routes.js";
 import favorites from "./routes/favorites-routes.js";
 import orders from "./routes/orders-routes.js";
+import auth from "./routes/auth-routes.js";
 import multer from 'multer'; // Importação do multer: Middleware para upload de arquivos
 import { storage } from './multer-config-user.js'; // Importação da configuração do multer
 import path from 'path';
@@ -24,6 +25,7 @@ app.use("/", categoriesRouter);
 app.use("/", address);
 app.use("/", favorites);
 app.use("/", orders);
+app.use("/", auth);
 app.use('/uploads/users', express.static(path.resolve('src/uploads/users')));
 app.use('/uploads/products', express.static(path.resolve('src/uploads/products')));
 

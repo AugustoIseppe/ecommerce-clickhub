@@ -2,17 +2,17 @@
 import { useState } from "react";
 import Usuario from "../../data/model/ClickHubUsers";
 
+
 export interface FormUsuarioProps {
     usuario: Partial<Usuario>;
     alterarUsuario: (usuario: Partial<Usuario>) => void;
     cancelar: () => void;
     salvar: () => void;
 }
-
 export default function FormUsuario(props: FormUsuarioProps) {
     const { usuario, alterarUsuario, salvar, cancelar } = props;
     const [successMessage, setSuccessMessage] = useState("");
-
+    const [modal, setModal] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,20 +32,21 @@ export default function FormUsuario(props: FormUsuarioProps) {
 
             if (response.ok) {
                 setSuccessMessage("Usuário cadastrado com sucesso!");
-                console.log("Usuário cadastrado com sucesso!");
-                {/* Exibir um dialog */ }
+                alert("Usuário cadastrado com sucesso!");
                 salvar();
-
             } else {
                 setSuccessMessage("Erro ao cadastrar usuário.");
+                alert("Erro ao cadastrar usuário.");
+                salvar();
             }
         } catch (error) {
+            setSuccessMessage("Erro ao cadastrar usuário.");
             console.error("Erro ao cadastrar usuário:", error);
         }
-        {/* Limpar campos ou redirecionar para a pagina de lista de usuarios */ }
-
-
+        console.log(`O VALOR DO SETMODAL É: ${modal}`);
     };
+
+
 
 
     return (
@@ -53,7 +54,8 @@ export default function FormUsuario(props: FormUsuarioProps) {
             <div className="flex flex-col">
                 <span>Nome</span>
                 <input
-                    type="text" className="input-form "
+                    type="text"
+                    className="input-form"
                     value={props.usuario.name ?? ""}
                     onChange={(e) => alterarUsuario({ ...usuario, name: e.target.value })}
                 />
@@ -95,10 +97,14 @@ export default function FormUsuario(props: FormUsuarioProps) {
                 />
             </div>
             <div className="flex flex-row gap-1">
-                {/* <button className="botaozinho" onClick={salvar}>Salvar</button> */}
-                <button className="botaozinho" onClick={handleSubmit}>Salvar</button>
-                <button className="botaozinho" onClick={cancelar}>Cancelar</button>
+                <button className="botaozinho" onClick={handleSubmit}>
+                    Salvar
+                </button>
+                <button className="botaozinho" onClick={cancelar}>
+                    Cancelar
+                </button>
             </div>
+
         </div>
     );
 }
