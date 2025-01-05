@@ -1,6 +1,6 @@
 import sql from '../db.js';
 import { randomUUID } from 'node:crypto'; //? -> Importa a função randomUUID da biblioteca crypto do Node.js para gerar um id único para os vídeos
-
+import bcrypt from 'bcrypt'; // Para hash e verificação de senhas
 
 export const getUsers = async (req, res) => {
     try {
@@ -72,25 +72,53 @@ export const getUsersWithAddress = async (req, res) => {
     }
 };
 
+// export const createUser = async (req, res) => {
+//     const uuid = randomUUID(); // Generates a unique id for the user
+//     console.log("Generated UUID:", uuid);
+//     try {
+//         const { name, email, password, phone, cpf } = req.body;
+//         const result = await sql`
+//             INSERT INTO users 
+//                 (user_id, name, email, password, phone, cpf, profile_picture) 
+//             VALUES 
+//                 (${uuid}, ${name}, ${email}, ${password}, ${phone}, ${cpf}, ${req.file ? req.file.filename : null})
+//             RETURNING *;
+//         `;
+//         console.log("User created successfully:", result);
+//         res.status(200).json(result[0]);
+//     } catch (error) {
+//         console.error("Database connection error:", error);
+//         res.status(500).json({ message: "Database connection failed." });
+//     }
+// };
+
 export const createUser = async (req, res) => {
-    const uuid = randomUUID(); // Generates a unique id for the user
+    const uuid = randomUUID(); // Gera um ID único para o usuário
     console.log("Generated UUID:", uuid);
+
     try {
         const { name, email, password, phone, cpf } = req.body;
+
+        // Criptografando a senha
+        const saltRounds = 10; // Defina o número de salt rounds (quanto mais alto, mais seguro, mas mais lento)
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
         const result = await sql`
             INSERT INTO users 
                 (user_id, name, email, password, phone, cpf, profile_picture) 
             VALUES 
-                (${uuid}, ${name}, ${email}, ${password}, ${phone}, ${cpf}, ${req.file ? req.file.filename : null})
+                (${uuid}, ${name}, ${email}, ${hashedPassword}, ${phone}, ${cpf}, ${req.file ? req.file.filename : null})
             RETURNING *;
         `;
+
         console.log("User created successfully:", result);
-        res.status(200).json(result[0]);
+        res.status(200).json(result[0]);  // Retorna o usuário criado
     } catch (error) {
         console.error("Database connection error:", error);
         res.status(500).json({ message: "Database connection failed." });
     }
 };
+
 
 export const deleteUser = async (req, res) => {
     try {
