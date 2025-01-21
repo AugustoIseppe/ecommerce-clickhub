@@ -4,8 +4,8 @@ import obterProductsClickHub from "@/data/service/obterProductsClickHub";
 
 export default async function ProductListClickHub() {
     const products = await obterProductsClickHub();
-    console.log(`TIPO DO PRODUTO: ${typeof products}`);
-    console.log(`LISTA DE PRODUTOS: ${JSON.stringify(products, null, 2)}`);
+    // console.log(`TIPO DO PRODUTO: ${typeof products}`);
+    // console.log(`LISTA DE PRODUTOS: ${JSON.stringify(products, null, 2)}`);
 
     return (
         <div className="overflow-x-auto h-screen bg-white text-black border-none">

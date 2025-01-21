@@ -14,6 +14,18 @@ export const getUsers = async (req, res) => {
 
 }
 
+export const getUserByEmail = async (req, res) => {
+    try {
+        const { email } = req.params;
+        const users = await sql`SELECT * FROM users WHERE email = ${email}`;
+        console.log("Users fetched successfully:", users);
+        res.status(200).json(users);
+    } catch (error) {
+        console.error("Database connection error:", error);
+        res.status(500).json({ message: "Database connection failed." });
+    }
+}
+
 export const getUsersWithAddress = async (req, res) => {
     try {
         const result = await sql`

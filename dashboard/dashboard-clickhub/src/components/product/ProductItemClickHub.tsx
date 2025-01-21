@@ -7,10 +7,6 @@ interface ProductItemClickHubProps {
   index: number;
 }
 
-interface ProductItemClickHubProps {
-  product: ClickHubProducts;
-  index: number;
-}
 
 export default function ProductItemClickHub(props: ProductItemClickHubProps) {
   const { product, index } = props;
